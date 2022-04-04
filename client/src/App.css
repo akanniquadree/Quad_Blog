@@ -1,0 +1,432 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+#toast-container{
+    top:50px !important;
+    right: 10px !important;
+    left: auto !important;
+  }
+
+a{
+    text-decoration: none !important;
+}
+
+/* NavBar Styling */
+.logo{
+    padding-left: 2rem !important;
+    font-family: 'Poppins', sans-serif;
+}
+.link{
+    color: black !important;
+}
+.navside{
+    top:auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+}
+.navbut{
+    margin-right: 1rem;
+}
+.sidebut{
+    margin: 0 32px !important;
+}
+.md{
+    margin-top: 4rem;
+    font-style: 2rem !important;
+}
+
+
+/* Home  sidebar Styling */
+.search{
+    font-size: 15px !important;
+    font-family: 'Bree Serif', serif;
+}
+input[type=search]{
+    height: 2rem !important;
+}
+.label-icn{
+    font-size: 15px;
+    line-height: 2 !important;
+}
+.home{
+    margin-top:10px;
+}
+.sidecontent{
+    list-style:none
+}
+.sidecontent_wrapper{
+    border-bottom: 2px solid #eeeeee !important;
+    margin-bottom: 20px  !important;
+}
+.recentImg{
+    width:100px;
+    height:70px
+}
+.sideimage{
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+   height: 100%;
+}
+.spane{
+    font-size: 10px;
+    display: block !important;
+    margin-bottom: 3px !important;
+    color: #8b8b8b !important;
+}
+.spann{
+    margin: 2px;
+}
+
+/* Home Screen */
+
+.card-image{
+    object-fit: fill;
+}
+.card-cat{
+    border-right: 1px dashed #eeeeee;
+    margin-right: 5px !important;
+    font-size: 10px !important;
+    padding: 0 8px;
+    color: #8b8b8b
+}
+.card-date{
+    font-size: 10px !important;
+    padding: 0 8px;
+    color: #8b8b8b
+}
+.card_cont{
+    padding: 10px !important;
+}
+.card-para{
+    margin-left: 10px !important;
+}
+.card-parat{
+    text-align: center;
+    padding: 0 !important;
+}
+.card-pagination{
+}
+
+
+
+/* SignUp page */
+.brand-logo{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 30px;
+}
+.sign_Cont{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    align-items: center;
+}
+.sign_wrapper{
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    margin: 10px auto;
+}
+.input-field input:focus{
+    border-bottom: 1px solid rgb(91, 144, 243) !important;
+    box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
+  }
+  input:focus{
+    border-bottom: 1px solid rgb(91, 144, 243) !important;
+    box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
+  }
+.input-field textarea:focus{
+    border-bottom: 1px solid rgb(91, 144, 243) !important;
+    box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
+  }
+  .input-field file:focus{
+    border-bottom: 1px solid rgb(91, 144, 243) !important;
+    box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
+  }
+.sign_butt{
+    border-radius: 50px !important;
+    font-size: 14px;
+    padding: 15px 40px;
+    margin-bottom: 30px;
+}
+.sign_butt:hover{
+    background-color: #242424 !important;
+    transition: all 0.5s !important;
+}
+.waves-effect.waves-brown .waves-ripple {
+    /* The alpha value allows the text and background color
+    of the button to still show through. */
+     background-color: rgba(179, 178, 178, 0.65);
+   }
+   .page{
+       text-align: start !important;
+   }
+   .page2{
+       text-align: center !important;
+   }
+.caro{
+    height: 350px !important;
+}
+.caro-img{
+    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+   /* Single blog */
+
+.single_title{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.single_span{
+    font-size: 14px;
+    color: #8b8b8b;
+    margin-right: 3rem;
+}
+.single_image{
+    margin-top: 1rem;
+    width: 100%;
+    height: 300px;
+}
+.single_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.single_name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.single_margin{
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+}
+.single_flex{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px
+}
+.single_row{
+    margin-bottom: 5px !important;
+}
+@media screen and (max-width:768px) {
+    .single_title{
+        font-size: 15px;
+        text-align: center !important;
+    }
+    .single_span{
+        margin-right: .5rem;
+    }
+    .single_name{
+        text-align: center;
+    }
+    .single_sapne{
+        text-align: center;
+    }
+    .single_flex{
+        justify-content:center;
+        margin-top: 1px !important
+    }
+}
+
+
+
+
+
+
+/* Verify Email */
+.verify-container{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.verify-image{
+    width: 55%;
+}
+
+@media screen and (max-width:768px) {
+    .verify-h1{
+        text-align: center;
+        font-size: 35px !important;
+    }
+}
+
+
+
+/* Profile  Sidebar*/
+.profile-container{
+    width:100%;
+    display: flex;
+}
+.profileS{
+    display: flex;
+}
+.profile_slide{
+    width:150px !important;
+    margin-top: 56px !important;
+}
+
+/* profile */
+.profileJustify{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 1rem !important;
+}
+.profilelogo{
+    font-size: 15px;
+    padding-left: 1rem !important;
+    font-family: 'Poppins', sans-serif;
+}
+.profileJustify button{
+    margin-left: 10px !important;
+    font-family: 'Poppins', sans-serif;
+}
+.profileH4{
+    font-size: 15px;
+    font-weight: bolder;
+}
+.profileDiv{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.image_center{
+    width: 150px !important;
+    height: 150px;
+}
+.image_center > img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+@media screen and (max-width:768px){
+    .profilelogo{
+        padding-left: .2rem !important;
+    }
+    .profileH4{
+        justify-content: center !important;
+    }
+    .profileJustify{
+        margin-Top: .5rem;
+    }
+    .image_center{
+        display: flex;
+        justify-content: center;
+        width: 100% !important;
+        height: 250px !important;
+    }
+    .image_center > img{
+        object-fit: fill;
+        
+    }
+}
+
+
+/* Write */
+.write_img{
+    height: 150px;
+    width: 100% !important;
+    margin-left: 5px !important;
+    margin-top: 4%;
+}
+.writeImage{
+    object-fit: contain;
+    width: 100%;
+    border-radius: 90px;
+    height: 100%;
+}
+
+.btn-position{
+    position: inherit !important;
+}
+
+
+
+
+
+/* Try creating profile */
+.profile-side-container{
+    display: flex;
+    margin-top: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+.profile-side-icon{
+    margin-left: 5px;
+}
+.profile-side-name{
+    margin-left: 10px;
+    font-size: 13px;
+}
+.desktop{
+    display: none;
+}
+.btn_desk{
+    height: 22px !important;
+    font-size: 10px !important;
+    line-height: 24.4px !important;
+}
+.mobiles{
+    height: calc(100vh - 56px);
+    position: fixed;
+    width: 16.6666666667%;
+    margin: 0 !important;
+    
+}
+.mobile{
+    padding: 0 !important;
+}
+@media screen and (max-width:768px) {
+   .mobile{
+       display: none !important;
+   } 
+   .desktop{
+    display:contents;
+    margin-right: 15px !important;
+}
+}
+
+
+/* settings */
+.settingsTitle{
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: lightcoral;
+}
+.settingsForm{
+  
+}
+.settingsPP{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    justify-content: center;
+}
+.settingsPP > img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.settingsPPIcon{
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 50%;
+    color: black;
+    margin-left: 10px;
+    cursor: pointer;
+    justify-content: center;
+}
