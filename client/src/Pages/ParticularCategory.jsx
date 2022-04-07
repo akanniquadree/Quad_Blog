@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import HomeSidebar from '../Component/HomeSidebar'
 import {Link, useParams} from "react-router-dom"
 import Carousel from '../Component/Carousel'
 import axios from "axios"
 import NotPage from '../Component/404Page'
+import { UserContext } from '../Context/action'
+
 
 function ParticularCategory() {
+    const {state} = useContext(UserContext)
     const [cats, setCats] = useState({})
     const [validUrl, setValidUrl] = useState(false)
     const {name} = useParams()
@@ -19,7 +22,6 @@ function ParticularCategory() {
         }
         getPosts()
     },[])
-    console.log(cats)
   return (
     <>
     {
@@ -56,8 +58,8 @@ function ParticularCategory() {
                                             </p>
                                             
                                         </div>
-                                        <div className="card-action">
-                                            <Link to="/" >Author Name</Link>
+                                        <div className="card-action card-action2">
+                                            <Link to={state._id !== item.user._id ? `profile/${item.user._id}`:`/profile`} >{item.user._id}</Link>
                                         </div>
                                     </div>
                                 </div>

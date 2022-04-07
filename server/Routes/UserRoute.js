@@ -82,6 +82,20 @@ userRoute.put("/update", RequireLogin ,async(req, res)=>{
    
 })
 
+//Get a particular User Profile
+userRoute.get("/user/:id", async(req, res)=>{
+    try {
+        const user = await UserModel.findById({_id:req.params.id}).select("-password")
+        if(user){
+            return res.status(200).json(user)
+        }
+       return res.status(404).json({error:"User not found"})
+
+    } catch (error) {
+       return res.status(500).json({error:error})
+    }
+   
+})
 
 
 

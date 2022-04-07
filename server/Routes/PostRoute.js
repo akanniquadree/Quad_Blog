@@ -12,7 +12,7 @@ const postRoute = express.Router()
 // //Get all posts
 postRoute.get("/posts", async(req, res)=>{
     try {
-        const post = await PostModel.find().sort("-createdAt").populate("category","_id name")
+        const post = await PostModel.find().sort("-createdAt").populate("category","_id name").populate("user","_id name")
     if(post){
        return res.status(200).json(post)
     }
@@ -61,10 +61,11 @@ postRoute.get("/category/:name", async(req, res)=>{
 //     }
 // })
 
+
 //get a single Post
-postRoute.get("/post/:id", RequireLogin,async(req, res)=>{
+postRoute.get("/post/:id",async(req, res)=>{
     try {
-        const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name")
+        const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name").populate("user", "_id name")
         if(post){
           return  res.status(200).json(post)
           console.log(post)
@@ -77,17 +78,35 @@ postRoute.get("/post/:id", RequireLogin,async(req, res)=>{
 })
 
 //Get User post
-postRoute.get("/user/post", RequireLogin, async(req,res)=>{
+postRoute.get("/user/post/:id", RequireLogin, async(req,res)=>{
+    console.log(req.user)
     try {
-        const userPost = await PostModel.find({user:req.user._id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
+       console.log(req.user._id) 
+        const userPost = await PostModel.find({user:req.params.id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
         if(userPost){
             return res.status(200).json(userPost)
-
+            
         }
         return res.status(400).json({message:"Error in getting post"})
     } catch (error) {
-        res.status(500).json(err)
+        console.log(error)
+        res.status(500).json(error)
     }
+})
+
+//Get a Particular user post
+postRoute.get("/use/:id", async(req, res)=>{
+    try {
+        const post = await PostModel.find({users:req.params.id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
+        if(post){
+            return res.status(200).json(post)
+        }
+       return res.status(404).json({error:"Post not found"})
+
+    } catch (error) {
+       return res.status(500).json({error:error})
+    }
+   
 })
 
 
@@ -233,7 +252,7 @@ postRoute.delete("/post/:id", RequireLogin, async(req,res)=>{
                 }
                 return res.status(400).json({error: "Error in deleting Post"})
             }
-            return res.status(40).json({Error: "You are not Authorized to delete this post"})
+            return res.status(400).json({Error: "You are not Authorized to delete this post"})
     } catch (error) {
         res.status(500).json(err)
     }

@@ -81,7 +81,13 @@ input[type=search]{
 }
 
 /* Home Screen */
-
+.cardHover:hover{
+    background-color: #dfdddd !important;
+    cursor: pointer;
+}
+.card-action2{
+    font-size: 10px !important;
+}
 .card-image{
     object-fit: fill;
 }
@@ -267,6 +273,11 @@ input[type=search]{
 
 
 /* Profile  Sidebar*/
+.profile_bttn{
+        height: 16.4px !important;
+        line-height: 16.4px !important;
+        font-size: 9px !important;
+}
 .profile-container{
     width:100%;
     display: flex;

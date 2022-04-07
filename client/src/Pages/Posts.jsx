@@ -7,10 +7,11 @@ import M from "materialize-css"
 import ProfileMobile from '../Component/ProfileMobile';
 import { UserContext } from '../Context/action';
 import DeletePostModal from '../Component/DeletePostModal';
+import { useParams } from 'react-router-dom';
 
 
 function Posts() {
-    const {state} = useContext(UserContext)
+    const {id} = useParams()
     const modal = useRef(null)
     const modal3 = useRef(null)
     const side = useRef(null)
@@ -19,11 +20,11 @@ function Posts() {
     M.Modal.init(modal.current)
     M.Sidenav.init(side.current)
     M.Modal.init(modal3.current)
-    fetch("http://localhost:5000/api/user/post",{
+    fetch(`http://localhost:5000/api/user/post/${id}`,{
         method:"get",
         headers:{
             "Content-Type" : "application/json",
-            "Authorization":"Bearer " +localStorage.getItem("token")
+            "authorization":"Bearer " +localStorage.getItem("token")
         },
     }).then(res=>res.json()).then(result=>{
         setData(result);
@@ -31,7 +32,8 @@ function Posts() {
         M.toast({html: result.error, classes:"#c62828 red darken-4"})
         return}
     }).catch(err=>console.log(err))
-  })
+  },[])
+
   
 const columns = [
     //   { field: 'id', headerName: 'ID', width: 40 },
@@ -65,7 +67,7 @@ const columns = [
     ];
     
   
-  const trim = data ?.map(post=>{
+  const trim = data?.map(post=>{
       return{
           id: post?._id,
           title: post?.title,

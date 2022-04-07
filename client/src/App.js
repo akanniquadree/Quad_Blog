@@ -23,6 +23,8 @@ import EditProfile from './Pages/EditProfile';
 import NotPage from './Component/404Page';
 import EditWrite from './Pages/EditWrite';
 import ParticularCategory from './Pages/ParticularCategory';
+import UserInfo from './Pages/UserInfo';
+import ParticularPost from './Pages/ParticularPost';
 
 const Routing =()=>{
   const {state, dispatch} = useContext(UserContext)
@@ -40,16 +42,18 @@ const Routing =()=>{
   return(
     <Routes>
         <Route path='/' exact element={<Home/>}/>
-        <Route path='/category/:name' exact element={<ParticularCategory/>}/>
+        <Route path='/category/:name' element={<ParticularCategory/>}/>
+        <Route path='/post/:id' element={<ParticularPost/>}/>
         <Route path='/signup' exact element={<SignUp/>}/>
         <Route path='/signin' exact element={<SignIn/>}/>
         <Route path='/resetpassword' exact element={<ResetPassword/>}/>
         <Route path='/contact' exact element={<Contact/>}/>
         <Route path='/blog/:id' exact element={<SinglePage/>}/>
+        <Route path='/profile/:id' exact element={<UserInfo/>}/>
         <Route path={state ? '/profile' : "/signin"} exact element={<Profile/>}/>
         <Route path={state ? "/profile/write" : "/signin"} element={<Write/>}></Route>
         <Route path={state ? "/profile/write/edit/:id" : "/signin"} element={<EditWrite/>}></Route>
-        <Route path={state ? "/profile/posts" : "/signin"} element={<Posts/>}></Route>
+        <Route path={state ? "/profile/posts/:id" : "/signin"} element={<Posts/>}></Route>
         <Route path={state ? "/profile/edit" : "/signin"} element={<EditProfile/>}></Route>
         <Route path={state ? "/profile/delete" : "/signin"} element={<DeletePost/>}></Route>
         <Route path='/users/:id/verify/:token' exact element={<VerifyEmail/>}/>

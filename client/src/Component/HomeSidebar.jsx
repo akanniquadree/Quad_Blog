@@ -13,7 +13,6 @@ function HomeSidebar() {
         const getCat = async() =>{
             const cat = await axios.get("http://localhost:5000/api/category")
             setCats(cat.data)
-            console.log(cats)
         }
         getPosts()
         getCat()

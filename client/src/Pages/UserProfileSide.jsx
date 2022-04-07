@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../Context/action'
 
 
 function UserProfileSide() {
+  const {state} = useContext(UserContext)
   return (
     <div className='mobiles #f5f5f5  z-depth-3 grey lighten-4'>
       <Link to="/profile" className='link'>
@@ -27,7 +29,7 @@ function UserProfileSide() {
         </div>
       </Link>
 
-      <Link to="/profile/posts" className='link'>
+      <Link to={`/profile/posts/${state._id}`} className='link'>
         <div className="profile-side-container">
             <div className="profile-side-icon">
               <i className="tiny material-icons">collections</i>
