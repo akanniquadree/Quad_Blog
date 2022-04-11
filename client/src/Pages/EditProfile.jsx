@@ -116,7 +116,8 @@ function EditProfile(props) {
                         <div className="row">
                           <div className="col s12">
                             <label htmlFor="username">Favourite Quote</label>
-                            <input type="text" placeholder={state.quote} value={quote} onChange={(e)=>setQuote(e.target.value)} required/>
+                            <textarea placeholder={state.quote} value={quote} onChange={(e)=>setQuote(e.target.value)} required className="materialize-textarea" data-length="120"></textarea>
+                            
                           </div>
                         </div>
                       </div>
@@ -124,13 +125,14 @@ function EditProfile(props) {
                         <div className="row">
                           <div className="col s12">
                             <label htmlFor="name">Biography</label>
-                            <input type="text" placeholder='Biography' placeholder={state.bio} value={bio} onChange={(e)=>setBio(e.target.value)} required/>
+                            <textarea placeholder={state.bio} value={bio} onChange={(e)=>setBio(e.target.value)} required className="materialize-textarea"></textarea>
+                        
                           </div>
                         </div>
                         <div className="row">
                           <div className="col s12">
                             <label htmlFor="name">Certification</label>
-                            <input type="text" placeholder='Certification' placeholder={state.cert} value={cert} onChange={(e)=>setCert(e.target.value)} required/>
+                            <textarea  placeholder={state.cert} value={cert} onChange={(e)=>setCert(e.target.value)} required className="materialize-textarea"></textarea>
                           </div>
                         </div>
                         <div className="row">

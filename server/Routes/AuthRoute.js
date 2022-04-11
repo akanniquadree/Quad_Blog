@@ -116,7 +116,7 @@ authRoute.post("/signin", async(req, res)=>{
                      subject: "ACCOUNT VERIFICATION",
                      html:`
                          <h4>Verify your email by clicking this </h4>
-                         <p>${url}</>
+                         <p><a href="${url}">${url}</a></p>
                      `
                  }
                  sgMail.send(send).then(sent=>{
@@ -153,7 +153,8 @@ authRoute.get("/users/:id/verify/:token", async(req,  res)=>{
             return res.status(402).json({error: "Invalid link"})
         }
         
-        const updateUser = await UserModel.findOneAndUpdate({_id:user._id,verify:true})
+        const updateUser = await UserModel.findOneAndUpdate({_id:user._id},{
+            $set:{verify:true}})
         if(updateUser){
             await Token.deleteOne()
             res.status(200).json({message:"Email has been Verified"})

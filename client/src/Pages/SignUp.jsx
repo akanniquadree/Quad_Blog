@@ -20,7 +20,7 @@ function SignUp() {
                 M.toast({html:"Invalid Email", classes:"#c62828 red darken-4"})
                 return
             }
-            if(data.error){M.toast({html:data.error,  classes:"#c62828 red darken-4"})}
+            if(data.error){M.toast({html:data.error,  classes:"#c62828 red darken-4"});return}
             else{
                 M.toast({html:data.message, classes:"#4caf50 green darken-1"})
                 history("/signin")

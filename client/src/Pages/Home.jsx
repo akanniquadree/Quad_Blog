@@ -32,7 +32,7 @@ function Home() {
                             {
                                 posts.map((item, index)=>(
                                 <div className="col s12 m4 19" key={index}>
-                                    <div className="card medium cardHover">
+                                    <div className="card small cardHover">
                                         <div className="card-image">
                                             <Link to={`/blog/${item._id}`}><img src={item.image} alt="" className="card-image"/></Link>
                                             <span  style={{textAlign:"center",fontSize:"15px",fontWeight:"bolder", color:"white"}} className="card-title t-black">Title goes in here</span>

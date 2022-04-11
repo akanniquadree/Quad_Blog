@@ -12,7 +12,7 @@ const postRoute = express.Router()
 // //Get all posts
 postRoute.get("/posts", async(req, res)=>{
     try {
-        const post = await PostModel.find().sort("-createdAt").populate("category","_id name").populate("user","_id name")
+        const post = await PostModel.find().sort("-createdAt").populate("category","_id name").populate("user","_id name").populate("comments.postedBy", "_id pic name" )
     if(post){
        return res.status(200).json(post)
     }
@@ -65,7 +65,7 @@ postRoute.get("/category/:name", async(req, res)=>{
 //get a single Post
 postRoute.get("/post/:id",async(req, res)=>{
     try {
-        const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name").populate("user", "_id name")
+        const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name").populate("user", "_id name").populate("comments.postedBy", "_id name pic" ).sort("-createdAt")
         if(post){
           return  res.status(200).json(post)
           console.log(post)
@@ -258,5 +258,54 @@ postRoute.delete("/post/:id", RequireLogin, async(req,res)=>{
     }
 })
 
+//Comment on a post
+postRoute.put("/comment", RequireLogin ,async(req, res)=>{
+    try {
+        const comment = {
+            text: req.body.text,
+            postedBy:req.user._id
+        }
+        const savedComment = await PostModel.findByIdAndUpdate(req.body.postId,{
+            $push:{comments:comment}
+        },{new:true})
+        if(savedComment){
+            return  res.status(200).json(savedComment)
+        }
+        return res.status(422).json({error:"Error in posting comment"})
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+})
+
+///like post
+postRoute.put("/like", RequireLogin, async(req, res)=>{
+    try {
+        const like = await PostModel.findByIdAndUpdate(req.body.postId,{
+            $push: {likes:req.user._id}
+        },{new:true})
+        if(like){
+            return res.status(200).json(like)
+        }
+        return res.status(422).json({error:"Cannot like this post"})
+    } catch (error) {
+        return res.status(500).json({error:error})
+    }
+   
+})
+///unlike post
+postRoute.put("/unlike", RequireLogin, async(req, res)=>{
+    try {
+        const unlike = await PostModel.findByIdAndUpdate(req.body.postId,{
+            $pull: {likes:req.user._id}
+        },{new:true})
+        if(unlike){
+            return res.status(200).json(unlike)
+        }
+        return res.status(422).json({error:"Cannot unlike this post"})
+    } catch (error) {
+        return res.status(500).json({error:error})
+    }
+   
+})
 
 export default postRoute;

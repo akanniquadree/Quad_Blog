@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import UserProfileSide from './UserProfileSide'
 import {Link} from "react-router-dom"
 import M from "materialize-css"
 import DeleteModal from '../Component/DeleteModal'
 import ProfileMobile from '../Component/ProfileMobile'
+import { UserContext } from '../Context/action'
 
 
 function Write() {
+    const {state} = useContext(UserContext)
     const [title, setTitle] = useState("")
     const [desc, setDesc] = useState("")
     const [image, setImage] = useState("")
@@ -34,7 +36,7 @@ function Write() {
                 return 
              }else{
                  M.toast({html:data.message, classes:"#4caf50 green darken-1"})
-                 window.location.reload(false)
+                 window.location.replace("/profile")
              }
         }).catch(err=>console.log(err))
 
