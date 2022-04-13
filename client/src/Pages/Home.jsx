@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 import Carousel from '../Component/Carousel'
 import axios from "axios"
 import { UserContext } from '../Context/action'
+import { UsePagination } from '../Component/UsePagination'
+import SinglePage from './SinglePage'
 
 function Home() {
     const {state} = useContext(UserContext)
@@ -59,15 +61,15 @@ function Home() {
                             }
                         </div>
                         <div className="col s6 offset-s3">
-                            <ul className="pagination">
-                                <li className="disabled"><Link to="#!"><i className="material-icons">chevron_left</i></Link></li>
-                                <li className="active"><Link to="#!">1</Link></li>
-                                <li className="waves-effect"><Link to="#!">2</Link></li>
-                                <li className="waves-effect"><Link to="#!">3</Link></li>
-                                <li className="waves-effect"><Link to="#!">4</Link></li>
-                                <li className="waves-effect"><Link to="#!">5</Link></li>
-                                <li className="waves-effect"><Link to="#!"><i className="material-icons">chevron_right</i></Link></li>
-                            </ul>
+                           {/* {
+                               posts.length > 0 ? (
+                                   <>
+                                    <UsePagination data={posts}  pageLimit={5} dataLimit={10}/>
+                                   </>
+                               ): (
+                                <h1>No Posts to display</h1>
+                               )
+                           } */}
                         </div>
                     </div>
                 </div>

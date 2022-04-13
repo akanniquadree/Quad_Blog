@@ -9,6 +9,7 @@ function HomeSidebar() {
         const getPosts = async() =>{
             const post = await axios.get("http://localhost:5000/api/posts")
             setPosts(post.data)
+            
         }
         const getCat = async() =>{
             const cat = await axios.get("http://localhost:5000/api/category")
@@ -37,7 +38,7 @@ function HomeSidebar() {
             {
                posts?.slice(0,3).map((item, index)=>(
                     <li className='sidecontent_wrapper' key={index}>
-                    <Link to="blog-details.html" className='link' style={{display:"flex",  marginBottom:"5px"}} >
+                    <Link to={`/blog/${item._id}`} className='link' style={{display:"flex",  marginBottom:"5px"}} >
                         <div className='recentImg'> <img className='sideimage' src={item.image} alt="Image"/></div>
                        
                         <div style={{marginLeft:"10px"}}>
@@ -57,17 +58,17 @@ function HomeSidebar() {
         <hr/>
         <ul className='sidecontent' >
             <li className='sidecontent_wrapper'>
-                <Link to="blog-details.html" className='link' style={{display:"flex"}} >
+                <Link to="#!" className='link' style={{display:"flex"}} >
                     <span className='spane'>13 January 2020</span>
                 </Link>
             </li>    
             <li className='sidecontent_wrapper'>
-                <Link to="blog-details.html" className='link' style={{display:"flex"}} >
+                <Link to="#!" className='link' style={{display:"flex"}} >
                     <span className='spane'>13 January 2020</span>
                 </Link>
             </li>    
             <li className='sidecontent_wrapper'>
-                <Link to="blog-details.html" className='link' style={{display:"flex"}} >
+                <Link to="#!" className='link' style={{display:"flex"}} >
                     <span className='spane'>13 January 2020</span>
                 </Link>
             </li>    

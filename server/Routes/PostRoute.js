@@ -4,9 +4,6 @@ import Category from "../Model/Category.js"
 import PostModel from "../Model/Post.js"
 
 
-
-
-
 const postRoute = express.Router()
 
 // //Get all posts
@@ -21,6 +18,7 @@ postRoute.get("/posts", async(req, res)=>{
     }
     
 })
+
 //Get a particular category
 postRoute.get("/category/:name", async(req, res)=>{
     try {
@@ -35,10 +33,6 @@ postRoute.get("/category/:name", async(req, res)=>{
     }
     
 })
-
-
-
-
 
 // postRoute.get("/posts", (req,res)=>{
 //     const username = req.params.user
@@ -63,6 +57,8 @@ postRoute.get("/category/:name", async(req, res)=>{
 
 
 //get a single Post
+
+
 postRoute.get("/post/:id",async(req, res)=>{
     try {
         const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name").populate("user", "_id name").populate("comments.postedBy", "_id name pic" ).sort("-createdAt")
@@ -292,6 +288,7 @@ postRoute.put("/like", RequireLogin, async(req, res)=>{
     }
    
 })
+
 ///unlike post
 postRoute.put("/unlike", RequireLogin, async(req, res)=>{
     try {

@@ -45,15 +45,8 @@ function SinglePage() {
             const data = await axios.get(`http://localhost:5000/api/post/${id}`)
             setPost(data.data)
             setValidUrl(true)
-            console.log(data)
         }
-        // const getCats = async() =>{
-        //     const posts = await axios.get(`http://localhost:5000/api/category/${post.category.name}`)
-        //     setCats(posts.data)
-        //     setValidUrl(true)
-            
-        // }
-        // getCats()
+ 
         getPost()
       },[items])
       console.log(cats)
