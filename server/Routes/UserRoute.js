@@ -68,7 +68,6 @@ userRoute.put("/update", RequireLogin ,async(req, res)=>{
                 user.cert = cert
                 const savedUser = await user.save()
                 if(savedUser){
-                    console.log(savedUser)
                     return res.status(200).json(savedUser)  
                 }
                 return res.status(404).json({error:"Error in updating Profile"})

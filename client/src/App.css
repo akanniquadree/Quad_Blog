@@ -11,7 +11,55 @@
 a{
     text-decoration: none !important;
 }
+.prev.disable,
+.next.disable {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999 !important;
+}
+.pagination li.active {
+    background-color: blue !important;
+}
 
+/* back to top */
+#back-to-top {
+    position: fixed;
+    right: -150px;
+    bottom: 40px;
+    z-index: 9999;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
+    -moz-box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
+    box-shadow: 0 10px 40px rgba(82, 85, 90, 0.2);
+    color: #424242;
+    font-size: 20px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    border: 1px solid #ddd;
+}
+#back-to-top:hover {
+    background-color: blue;
+    color: #fff;
+    border-color: blue;
+}
+#back-to-top.back-btn-shown {
+    right: 30px;
+    opacity: 1;
+    visibility: visible;
+}
 /* NavBar Styling */
 .logo{
     padding-left: 2rem !important;
@@ -83,8 +131,8 @@ input[type=search]{
 /* Home Screen */
 
 .cardHover:hover{
-    width: 250px;
-    background-color: #dfdddd !important;
+    width: 95%;
+    background-color: #f0eeee !important;
     cursor: pointer;
 }
 .card-action2{

@@ -5,6 +5,7 @@ import Carousel from '../Component/Carousel'
 import axios from "axios"
 import NotPage from '../Component/404Page'
 import { UserContext } from '../Context/action'
+import { UsePagination } from '../Component/UsePagination'
 
 
 function ParticularPost() {
@@ -30,7 +31,7 @@ function ParticularPost() {
         validUrl ? 
         <>
         <div>
-        {/* <Carousel/> */}
+        <Carousel/>
         </div>  
         <div className="row home">
             <div className="col s12 m10 offset-m1">
@@ -39,48 +40,8 @@ function ParticularPost() {
                         <HomeSidebar/>
                     </div>
                     <div className="col s12 m8 l9">
-                        <div className="row">
-                            {
-                                cats?.map((item, index)=>(
-                                <div className="col s12 m4 19" key={index}>
-                                    <div className="card medium">
-                                        <div className="card-image">
-                                            <img src={item.image} alt="" className="card-image"/>
-                                            <span  style={{textAlign:"center",fontSize:"15px",fontWeight:"bolder", color:"white"}} className="card-title t-black">Title goes in here</span>
-                                        </div>
-                                        <div style={{display:"flex", justifyContent:"center", marginTop:"5px"}}>
-                                            
-                                            <span className='card-cat'>{item.category.name}</span>
-                                            <span className='card-date'>{new Date(item.createdAt).toDateString()}</span>
-                                        </div>
-                                        
-                                        <div className="card-content card_cont">
-                                            <p style={{textAlign:"justify", padding:"0 10px !important"}}>I am Link very simple card.little markup to use effectively.
-                                            <Link to="#" className='link'>Read More...</Link>
-                                            </p>
-                                            
-                                        </div>
-                                        <div className="card-action card-action2">
-                                            <Link to={state._id !== item.user._id ? `profile/${item.user._id}`:`/profile`} >{item.user.name}</Link>
-                                        </div>
-                                    </div>
-                                </div>
-                                ))
-                                
-                                
-                            }
-                        </div>
-                        <div className="col s6 offset-s3">
-                            <ul className="pagination">
-                                <li className="disabled"><Link to="#!"><i className="material-icons">chevron_left</i></Link></li>
-                                <li className="active"><Link to="#!">1</Link></li>
-                                <li className="waves-effect"><Link to="#!">2</Link></li>
-                                <li className="waves-effect"><Link to="#!">3</Link></li>
-                                <li className="waves-effect"><Link to="#!">4</Link></li>
-                                <li className="waves-effect"><Link to="#!">5</Link></li>
-                                <li className="waves-effect"><Link to="#!"><i className="material-icons">chevron_right</i></Link></li>
-                            </ul>
-                        </div>
+                        
+                            <UsePagination posts={cats}/>
                     </div>
                 </div>
             </div>

@@ -64,7 +64,6 @@ postRoute.get("/post/:id",async(req, res)=>{
         const post = await PostModel.findById({_id:req.params.id}).populate("category", "_id name").populate("user", "_id name").populate("comments.postedBy", "_id name pic" ).sort("-createdAt")
         if(post){
           return  res.status(200).json(post)
-          console.log(post)
         }
         return  res.status(422).json({error:"Error in getting post"})
     } catch (error) {
@@ -73,12 +72,11 @@ postRoute.get("/post/:id",async(req, res)=>{
     }
 })
 
-//Get User post
+//Get Log IN  User post
 postRoute.get("/user/post/:id", RequireLogin, async(req,res)=>{
-    console.log(req.user)
     try {
-       console.log(req.user._id) 
-        const userPost = await PostModel.find({user:req.params.id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
+       
+        const userPost = await PostModel.find({user:req.user._id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
         if(userPost){
             return res.status(200).json(userPost)
             
@@ -93,7 +91,7 @@ postRoute.get("/user/post/:id", RequireLogin, async(req,res)=>{
 //Get a Particular user post
 postRoute.get("/use/:id", async(req, res)=>{
     try {
-        const post = await PostModel.find({users:req.params.id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
+        const post = await PostModel.find({user:req.params.id}).populate("user", "_id name").populate("category","_id name").sort("-createdAt")
         if(post){
             return res.status(200).json(post)
         }

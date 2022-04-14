@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext,useState, useEffect, useReducer } from 'react';
 import './App.css';
 import "materialize-css/dist/css/materialize.min.css";
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -67,6 +67,21 @@ const Routing =()=>{
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [scrollBtn, setScrollBtn] = useState(false)
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+}, []);
+
+const handleScroll = (e) =>{
+    if(window.scrollY > 100){
+        setScrollBtn(true)
+    }else if (window.scrollY < 100) {
+        setScrollBtn(false)
+    }
+  };
+ const scrollTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <UserContext.Provider value={{state, dispatch}}>
     <BrowserRouter>
@@ -74,6 +89,9 @@ function App() {
       {/* <Carousel/> */}
       <Routing/>
       {/* <Foter/> */}
+        <div role="button" onKeyUp={scrollTop} tabIndex="0" onClick={scrollTop} id="back-to-top" className={scrollBtn ? "back-btn-shown" : ""} >
+          <i className="small material-icons" title="Go top">keyboard_capslock</i>
+        </div>
     </BrowserRouter>
    </UserContext.Provider>
   );
