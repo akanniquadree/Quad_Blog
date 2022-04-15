@@ -132,7 +132,7 @@ input[type=search]{
 
 .cardHover:hover{
     width: 95%;
-    background-color: #f0eeee !important;
+    background-color: #faf0f0 !important;
     cursor: pointer;
 }
 .card-action2{

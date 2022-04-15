@@ -25,9 +25,12 @@ import EditWrite from './Pages/EditWrite';
 import ParticularCategory from './Pages/ParticularCategory';
 import UserInfo from './Pages/UserInfo';
 import ParticularPost from './Pages/ParticularPost';
+import Dashboard from './Pages/Admin/Dashboard';
+import { useLocation } from 'react-router-dom';
 
 const Routing =()=>{
   const {state, dispatch} = useContext(UserContext)
+  const history = useLocation()
   useEffect(()=>{
     try{
       const user = JSON.parse(localStorage.getItem("user"))
@@ -40,7 +43,12 @@ const Routing =()=>{
     
   },[])
   return(
+    <>
+    {
+        history.pathname != "/admin"   && <Navbar/>
+      }
     <Routes>
+      
         <Route path='/' exact element={<Home/>}/>
         <Route path='/category/:name' element={<ParticularCategory/>}/>
         <Route path='/post/:id' element={<ParticularPost/>}/>
@@ -58,14 +66,19 @@ const Routing =()=>{
         <Route path={state ? "/profile/delete" : "/signin"} element={<DeletePost/>}></Route>
         <Route path='/users/:id/verify/:token' exact element={<VerifyEmail/>}/>
         <Route path="/users/:id/resetpassword/:token" element={<NewPassword/>}></Route>
+
+        {/* Admin Route */}
+        <Route path="/admin" exact element={<Dashboard/>}></Route>
         
         <Route path="*" element={<NotPage/>}></Route>
       </Routes>
+      </>
   )
 }
 
 
 function App() {
+  
   const [state, dispatch] = useReducer(reducer, initialState)
   const [scrollBtn, setScrollBtn] = useState(false)
   useEffect(() => {
@@ -85,8 +98,9 @@ const handleScroll = (e) =>{
   return (
     <UserContext.Provider value={{state, dispatch}}>
     <BrowserRouter>
-      <Navbar/>
-      {/* <Carousel/> */}
+      
+      {/* <Navbar/> */}
+
       <Routing/>
       {/* <Foter/> */}
         <div role="button" onKeyUp={scrollTop} tabIndex="0" onClick={scrollTop} id="back-to-top" className={scrollBtn ? "back-btn-shown" : ""} >
