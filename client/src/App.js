@@ -27,6 +27,11 @@ import UserInfo from './Pages/UserInfo';
 import ParticularPost from './Pages/ParticularPost';
 import Dashboard from './Pages/Admin/Dashboard';
 import { useLocation } from 'react-router-dom';
+import Users from './Pages/Admin/Users';
+import EditUser from './Pages/Admin/EditUser';
+import CreateUser from './Pages/Admin/CreateUser';
+import ViewPost from './Pages/Admin/ViewPost';
+import EditPost from './Pages/Admin/EditPost';
 
 const Routing =()=>{
   const {state, dispatch} = useContext(UserContext)
@@ -45,7 +50,7 @@ const Routing =()=>{
   return(
     <>
     {
-        history.pathname != "/admin"   && <Navbar/>
+        !history.pathname.startsWith("/admin") && <Navbar/>
       }
     <Routes>
       
@@ -69,6 +74,11 @@ const Routing =()=>{
 
         {/* Admin Route */}
         <Route path="/admin" exact element={<Dashboard/>}></Route>
+        <Route path="/admin/users" exact element={<Users/>}></Route>
+        <Route path="/admin/users/:id" exact element={<EditUser/>}></Route>
+        <Route path="/admin/users/create" exact element={<CreateUser/>}></Route>
+        <Route path="/admin/posts" exact element={<ViewPost/>}></Route>
+        <Route path="/admin/posts/:id" exact element={<EditPost/>}></Route>
         
         <Route path="*" element={<NotPage/>}></Route>
       </Routes>

@@ -96,6 +96,20 @@ userRoute.get("/user/:id", async(req, res)=>{
    
 })
 
+//Get All User
+userRoute.get("/users", async(req, res)=>{
+    try {
+        const user = await UserModel.find().select("-password")
+        if(user){
+            return res.status(200).json(user)
+        }
+       return res.status(404).json({error:"User not found"})
+
+    } catch (error) {
+       return res.status(500).json({error:error})
+    }
+   
+})
 
 
 export default userRoute;

@@ -195,6 +195,11 @@ input[type=search]{
     border-bottom: 1px solid rgb(91, 144, 243) !important;
     box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
   }
+textarea:focus{
+    border-bottom: 1px solid rgb(91, 144, 243) !important;
+    box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
+  }
+
   input:focus{
     border-bottom: 1px solid rgb(91, 144, 243) !important;
     box-shadow: 0 1px 0 0 rgb(91, 144, 243) !important;
@@ -426,10 +431,16 @@ input[type=search]{
 
 
 /* Try creating profile */
+.sactive{
+    background-color: #ebe7e7;
+}
 .profile-side-container{
     display: flex;
     margin-top: 10px;
     border-bottom: 1px solid #eeeeee;
+}
+.profile-side-container:hover{
+    background-color: #ebe7e7;
 }
 .profile-side-icon{
     margin-left: 5px;
@@ -447,7 +458,7 @@ input[type=search]{
     line-height: 24.4px !important;
 }
 .mobiles{
-    height: calc(100vh - 56px);
+    height: calc(100vh - 60px);
     position: fixed;
     width: 16.6666666667%;
     margin: 0 !important;
@@ -455,6 +466,7 @@ input[type=search]{
 }
 .mobile{
     padding: 0 !important;
+   
 }
 @media screen and (max-width:768px) {
    .mobile{
