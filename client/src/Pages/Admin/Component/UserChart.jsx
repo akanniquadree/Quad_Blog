@@ -46,7 +46,7 @@ const data = [
     },
   ];
 
-export default function UserChart() {
+export default function UserChart({user, post}) {
   return (
     <div className='col s12 hoverable'>
         <div className="row">

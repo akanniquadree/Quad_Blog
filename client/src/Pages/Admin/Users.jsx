@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from './Component/Navbar'
 import Sidebar from './Component/Sidebar'
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Users() {
+    const [users, setUsers] = useState([])
+   
+   useEffect(()=>{
+      const getUsers = async() => {
+        const user = await axios.get("http://localhost:5000/api/users")
+        setUsers(user.data)
+      }
+      getUsers()
+   },[])
     const columns = [
         //   { field: 'id', headerName: 'ID', width: 40 },
           { field: 'name', headerName: 'User', width: 250, renderCell: (params)=>{
@@ -20,12 +30,21 @@ function Users() {
           } },
           { field: 'email', headerName: 'Email', width:200,},
           { field: 'username', headerName: 'Username', width: 200,},
-          { field: 'post', headerName: 'Post', width: 150,},
-          { field: 'date', headerName: 'Date', width: 120,},
+          { field: 'post', headerName: 'Post', width: 80,},
+          { field: 'date', headerName: 'Date', width: 190, renderCell: (params)=>{
+            return(
+                <div style={{display:"flex", alignItems:"center"}}>
+                    <div style={{marginRight:"10px",}}>{params.row.date}</div> 
+                    {
+                        params.row.time
+                    }
+                </div>
+            )
+      }},
           { field: 'action', headerName: 'Action', width: 90, renderCell: (params)=>{
               return(
                     <div>
-                        <Link className='link' to={`/profile/write/edit/${params.row.id}`}><i className='tiny material-icons'  style={{marginRight:"5px",color:"green",cursor:"pointer"}}>edit</i></Link>           
+                        <Link className='link' to={`/admin/users/${params.row.id}`}><i className='tiny material-icons'  style={{marginRight:"5px",color:"green",cursor:"pointer"}}>edit</i></Link>           
                         
                         <i className='tiny material-icons modal-trigger' style={{marginRight:"5px",color:"red",cursor:"pointer"}} data-target="modal3">delete</i>
                     </div>
@@ -33,19 +52,17 @@ function Users() {
           }},
          
         ];
-    const rows=[
-        { id: 1, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 2, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 3, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 4, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 5, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 6, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 7, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 8, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 9, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 10, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-        { id: 11, name:"John", email: 'Snow', image: '/images/caro2.jpg', username: "travel", date:"oct 2020"},
-    ]
+    const rows= users?.map((itm, idx)=>{
+        return{
+            id: itm?._id,
+            name: itm?.name,
+            image:itm?.pic,
+            email:itm?.email,
+            username:itm?.username,
+            date:new Date(itm?.createdAt).toDateString(),
+            time:new Date(itm?.createdAt).toLocaleTimeString()
+        }
+    })
   return (
     <div>
         <Navbar/>
@@ -61,7 +78,7 @@ function Users() {
                                 rows={rows}
                                 columns={columns}
                                 pageSize={10}
-                              
+                                rowsPerPageOptions={[10]}
                                 checkboxSelection
                                 disableSelectionOnClick
                             />

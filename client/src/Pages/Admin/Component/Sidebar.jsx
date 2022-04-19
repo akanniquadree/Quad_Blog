@@ -52,7 +52,7 @@ function Sidebar() {
         </div>
     </Link>
     <Link to="/profile" className='link'>
-      <div className={`profile-side-container ${history.pathname.startsWith("/admin/users") ? "sactive": ""}`}>
+      <div className={`profile-side-container `}>
           <div className="profile-side-icon">
             <i className="tiny material-icons">code</i>
           </div>

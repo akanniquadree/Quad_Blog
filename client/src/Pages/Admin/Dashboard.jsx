@@ -65,11 +65,11 @@ function Dashboard(props) {
                   </div>
                 </div>
                 <div className="row z-depth-1" style={{marginLeft:"15px", marginRight:"15px"}}>
-                    <UserChart/>
+                    <UserChart user={users} post={posts}/>
                 </div>
                 <div className="row " style={{marginLeft:"15px", marginRight:"15px"}}>
                     <div className="col s12 m5 z-depth-1" style={{marginRight:"2%",marginLeft:"3%"}}><NewUser data={users}/></div>
-                    <div className="col s12 m6 z-depth-1"><LastestPost/></div>
+                    <div className="col s12 m6 z-depth-1"><LastestPost data={posts}/></div>
                 </div>
             </div>
         </div>
