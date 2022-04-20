@@ -134,7 +134,7 @@ postRoute.post("/createpost", RequireLogin, async(req, res)=>{
                 post.category = categorys._id
                 const saved = await post.save()
                 if(saved){
-                   return res.status(200).json({message:"Post is updated successfully"})   
+                   return res.status(200).json({message:"Post is Created successfully"})   
                 }
             }                 
         }
@@ -179,48 +179,52 @@ postRoute.put("/post/:id", RequireLogin, async(req,res)=>{
         if(!title || !desc || !cat){
             return res.status(422).json({message:"Please all the required field"})
         }
-        const existingCat = await Category.findOne({name:cat})
-        if(existingCat){
-            const posts = await PostModel.findByIdAndUpdate(postId,{
-                $set:{title, image,desc,category:existingCat._id}
-            },{new:true})
-            if(posts){
-                const cats = await Category.findOneAndUpdate({posts:postId},{
-                    $pull:{posts:postId}
-                },{new:true})
-                if(cats){
-                    const updatedCat = await Category.findOneAndUpdate({name:cat},{
-                        $push:{posts:postId}
+        const post = await PostModel.findById({_id:postId}).populate("user","_id")
+        if(post.user._id.toString() == req.user._id.toString() || post.user.role == 1){
+            const existingCat = await Category.findOne({name:cat})
+                if(existingCat){
+                    const posts = await PostModel.findByIdAndUpdate(postId,{
+                        $set:{title, image,desc,category:existingCat._id}
                     },{new:true})
-                    if(updatedCat){
+                    if(posts){
+                        const cats = await Category.findOneAndUpdate({posts:postId},{
+                            $pull:{posts:postId}
+                        },{new:true})
+                        if(cats){
+                            const updatedCat = await Category.findOneAndUpdate({name:cat},{
+                                $push:{posts:postId}
+                            },{new:true})
+                            if(updatedCat){
+                                return res.status(200).json({message:"Post Successfully Updated"})
+                            }
+                            return res.status(422).json({error:"Error in Updating post"})
+                        }
+                        return res.status(422).json({error:"Error in Updating post"})
+                    }
+                    return res.status(422).json({error:"Error in Updating post"})
+
+                }
+            
+                const createCat = new Category({
+                    name:cat,
+                    posts:postId
+                })
+                await createCat.save()
+                const alreadyPost = await PostModel.findByIdAndUpdate(postId,{
+                    $set:{title, image,desc,category:createCat._id}
+                },{new:true})
+                if(alreadyPost){
+                    const catss = await Category.findOneAndUpdate({posts:postId},{
+                        $pull:{posts:postId}
+                    },{new:true})
+                    if(catss){
                         return res.status(200).json({message:"Post Successfully Updated"})
                     }
                     return res.status(422).json({error:"Error in Updating post"})
                 }
                 return res.status(422).json({error:"Error in Updating post"})
-            }
-            return res.status(422).json({error:"Error in Updating post"})
-
-        }
-       
-        const createCat = new Category({
-            name:cat,
-            posts:postId
-        })
-        await createCat.save()
-        const alreadyPost = await PostModel.findByIdAndUpdate(postId,{
-            $set:{title, image,desc,category:createCat._id}
-        },{new:true})
-        if(alreadyPost){
-            const catss = await Category.findOneAndUpdate({posts:postId},{
-                $pull:{posts:postId}
-            },{new:true})
-            if(catss){
-                return res.status(200).json({message:"Post Successfully Updated"})
-            }
-            return res.status(422).json({error:"Error in Updating post"})
-        }
-        return res.status(422).json({error:"Error in Updating post"})
+                }
+                return res.status(400).json({Error: "You are not Authorized to Update this post"})
     } catch (error) {
         console.log(error)
         res.status(500).json(err)
@@ -232,7 +236,7 @@ postRoute.put("/post/:id", RequireLogin, async(req,res)=>{
 postRoute.delete("/post/:id", RequireLogin, async(req,res)=>{
     try {
         const post = await PostModel.findById({_id:req.params.id}).populate("user","_id")
-            if(post.user._id.toString() == req.user._id.toString()){
+            if(post.user._id.toString() == req.user._id.toString()|| post.user.role == 1){
                  const removedPost = post.deleteOne()
                 if(removedPost){
                     removeCat = await Category.findOne({post:req.params.id},{

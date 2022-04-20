@@ -26,7 +26,7 @@ import ParticularCategory from './Pages/ParticularCategory';
 import UserInfo from './Pages/UserInfo';
 import ParticularPost from './Pages/ParticularPost';
 import Dashboard from './Pages/Admin/Dashboard';
-import { useLocation } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import Users from './Pages/Admin/Users';
 import EditUser from './Pages/Admin/EditUser';
 import CreateUser from './Pages/Admin/CreateUser';
@@ -73,12 +73,13 @@ const Routing =()=>{
         <Route path="/users/:id/resetpassword/:token" element={<NewPassword/>}></Route>
 
         {/* Admin Route */}
-        <Route path="/admin" exact element={<Dashboard/>}></Route>
-        <Route path="/admin/users" exact element={<Users/>}></Route>
-        <Route path="/admin/users/:id" exact element={<EditUser/>}></Route>
-        <Route path="/admin/users/create" exact element={<CreateUser/>}></Route>
-        <Route path="/admin/posts" exact element={<ViewPost/>}></Route>
-        <Route path="/admin/posts/:id" exact element={<EditPost/>}></Route>
+        
+        <Route path={state && state.role == 1 ? "/admin" : "/profile"} exact element={<Dashboard/>}></Route>
+        <Route path={state && state.role == 1 ?"/admin/users" : "/profile" }exact element={<Users/>}></Route>
+        <Route path={state && state.role == 1 ? "/admin/users/:id" : "/profile" } exact element={<EditUser/>}></Route>
+        <Route path={state && state.role == 1 ?"/admin/users/create" : "/profile" } exact element={<CreateUser/>}></Route>
+        <Route path={state && state.role == 1 ?"/admin/posts": "/profile" } exact element={<ViewPost/>}></Route>
+        <Route path={state && state.role == 1 ?"/admin/posts/:id": "/profile" } exact element={<EditPost/>}></Route>
         
         <Route path="*" element={<NotPage/>}></Route>
       </Routes>

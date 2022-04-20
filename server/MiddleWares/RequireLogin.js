@@ -20,3 +20,12 @@ export const RequireLogin = async (req, res, next) =>{
         })
     })
 }
+
+export function authRole(role){
+    return (req, res, next)=>{
+        if(req.user.role !== 1){
+           return res.status(401).json({error:"You are not Authorized"})
+        }
+        next()
+    }
+}

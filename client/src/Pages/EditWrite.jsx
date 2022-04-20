@@ -51,7 +51,7 @@ function EditWrite() {
              }
              else{
                  M.toast({html:data.message, classes:"#4caf50 green darken-1"})
-                 window.location.replace("/profile/posts")
+                 window.location.replace(`/profile/posts/${id}`)
              }
         }).catch(err=>console.log(err))
 

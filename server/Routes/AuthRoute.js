@@ -127,9 +127,10 @@ authRoute.post("/signin", async(req, res)=>{
          }
         if(verifyPassword){
             //Token that will be sent to the client
+            
           const tokenHeader = jwt.sign({_id:user._id},process.env.JWT_HEADER)
           const {password,role,...others} = user._doc
-          res.status(200).json({tokenHeader, others})
+          return res.status(200).json({tokenHeader, others})
         }
           
     } catch (error) {

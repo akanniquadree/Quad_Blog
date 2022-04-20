@@ -1,11 +1,31 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
 import Navbar from './Component/Navbar'
 import Sidebar from './Component/Sidebar'
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import NotPage from '../../Component/404Page';
+import axios from "axios"
 
 function EditPost() {
+    const [post, setPost] = useState({})
+    const [validUrl, setValidUrl] = useState(false)
+    const {id} = useParams()
+    useEffect(()=>{
+        const getPost = async() =>{
+            const singlePost = await axios.get(`http://localhost:5000/api/post/${id}`)
+            setPost(singlePost.data)
+            setValidUrl(true)
+        }
+        getPost()
+    },[])
   return (
     <div>
+        {
+          validUrl ? 
+        <>
+        {
+            post &&
+        <>
         <Navbar/>
         <div className="row">    
             <div className="col s12 m2  mobile">
@@ -25,35 +45,35 @@ function EditPost() {
                     <div className="col s12 m4 z-depth-1" style={{marginRight:"4%",marginLeft:"2%", marginBottom:"5px"}}>
                         <div className="col s12">
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <img src="/images/caro2.jpg" alt="" style={{width:"60px",height:"60px",marginRight:"10px",marginTop:"10px", objectFit:"cover", borderRadius:"50%"}}/>
+                                <img src={post.image} alt="" style={{width:"60px",height:"60px",marginRight:"10px",marginTop:"10px", objectFit:"cover", borderRadius:"50%"}}/>
                                 <div classNAme="profile_name" style={{display:"flex", alignItems:"center"}}>
-                                    <h6>The Strange Land</h6>
+                                    <h6>{post.title}</h6>
                                 </div>
                             </div>
                         </div>
                         <div className="col s12" >
-                            <span  style={{color: "#aaa", margin:"7px, 0", fontSize:"15px"}}>Post Details</span>
+                            <span  style={{color: "black", margin:"7px, 0", fontSize:"15px"}}>Post Details</span>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <i className='tiny material-icons'style={{marginRight:"10px"}}>Person</i>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>Akanni Quadry</span>
+                                <i className='tiny material-icons'style={{marginRight:"10px"}}>person</i>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{post.user.name}</span>
                             </div>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <i className='tiny material-icons'style={{marginRight:"10px"}}>Mail</i>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>category</span>
+                                <i className='tiny material-icons'style={{marginRight:"10px"}}>folder</i>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{post.category.name}</span>
                             </div>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <i className='tiny material-icons'style={{marginRight:"10px"}}>Quote</i>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word" }}>Likes</span>
+                                <i className='tiny material-icons'style={{marginRight:"10px", color:"red"}}>favorite</i>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word" }}>{post.likes.length}</span>
                             </div>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <i className='tiny material-icons'style={{marginRight:"10px"}}>Quote</i>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word" }}>comment</span>
+                                <i className='tiny material-icons'style={{marginRight:"10px"}}>chat</i>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word" }}>{post.comments.length}</span>
                             </div>
                         </div>
                         <div className="col s12" >
-                            <span  style={{color: "#aaa", margin:"7px, 0", fontSize:"15px"}}>Description</span>
+                            <span  style={{color: "black", margin:"7px, 0", fontSize:"15px"}}>Description</span>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word" }}>dkjdkjdjkdjkdjdjkdjkdjddkjdkjdkjdkdjkdjkdkdjdjkdjkdjdkjdkjdkjdkdjkdjkdjdkjdkdjkdjkdjdkjdkjdkdjkdjdkjdkjdkdjkdjdkjdkjdkdjkdjdkjdkjdkjdk</span>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word", }}>{post.desc}</span>
                             </div>
                         </div>
                     </div>
@@ -65,7 +85,7 @@ function EditPost() {
                                         <div className="col s12 m6 "style={{marginTop:"5px"}}>
                                             <div className="row">
                                                 <div className="col s12">
-                                                    <label htmlFor="name">Name</label>
+                                                    <label htmlFor="title">Title</label>
                                                     <input type="text" placeholder="name" required/>
                                                 </div>
                                             </div>
@@ -109,6 +129,11 @@ function EditPost() {
                 </div>
             </div>
         </div>
+        </>
+         }
+        </>:
+        <NotPage/>
+        }
     </div>
   )
 }

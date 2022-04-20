@@ -51,7 +51,9 @@ function UserProfileSide() {
             </div>
           </div>
       </Link>
-      <Link to="/admin" className='link'>
+      {
+        state && state.role == 1 ?
+        <Link to="/admin" className='link'>
           <div className="profile-side-container">
             <div className="profile-side-icon">
               <i className="tiny material-icons">code</i>
@@ -60,7 +62,10 @@ function UserProfileSide() {
               <span>Switch To Admin</span>
             </div>
           </div>
-      </Link>
+      </Link>:
+      <div></div>
+      }
+      
     </div>
 
   )
