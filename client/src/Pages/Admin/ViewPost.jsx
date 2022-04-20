@@ -1,11 +1,14 @@
-import { DataGrid } from '@mui/x-data-grid';
+
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Navbar from './Component/Navbar'
 import Sidebar from './Component/Sidebar'
 import UserChart from './Component/UserChart'
+import { DataGrid } from '@mui/x-data-grid';
+
 
 function ViewPost() {
+    const [posts, setPosts] = useState([])
     const columns = [
         //   { field: 'id', headerName: 'ID', width: 40 },
           { field: 'title', headerName: 'Post', width: 250, renderCell: (params)=>{
