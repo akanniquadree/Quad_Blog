@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken"
 import sgMail from "@sendgrid/mail"
 import Token from "../Model/Token.js"
 import dotenv from "dotenv"
+import { authRole, RequireLogin } from "../MiddleWares/RequireLogin.js"
 dotenv.config()
 
 const authRoute = express.Router()
@@ -238,7 +239,48 @@ authRoute.post("/newpassword", async(req, res)=>{
 
 })
 
+//Route for Signing Up 
+authRoute.post("/admin/adduser",RequireLogin, authRole(), async(req,res)=>{
+    const {email, name, password, username, conPassword, role} = req.body
+    try {
+        
+        //Checking for the email name and username field if they are empty 
+        if(!email || !name || !password || !username || !conPassword){
+            return res.status(422).json({error:"Please fill all the fields"})
+        }
+        if(password !== conPassword){
+            return res.status(422).json({error:"Password does not match"})
+        }
+        //checking for if user email already exist in the database
+        const existUser = await UserModel.findOne({email:email})
+        if(existUser){
+            return  res.status(422).json({error:"User already exist with that email"})
+        }
 
+        //hashing the password using bcrypt to protect it from theft 
+        const salt = await bcrypt.genSalt(13)
+        const hashedPassword = await bcrypt.hash(password, salt)
+        
+        //saving the parameters into the backend
+        const user = new UserModel({
+            email,
+            name,
+            password:hashedPassword,
+            username,
+            role
+        })
+        const savedUser = await user.save()
+        
+        //sending an activation mail to the user email using sendGrid
+        if(savedUser){
+            return res.status(200).json({message:"User created Successfully, Verify the email to continue"})
+        }
+       
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({error:error})
+    }
+})
 
 
 export default authRoute;

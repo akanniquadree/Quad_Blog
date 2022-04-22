@@ -8,12 +8,32 @@ function CreateUser() {
     const [name, setName] = useState("")
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
+    const [role, setRole] = useState("")
     const [password, setPassword] = useState("")
+    const [conPassword, setConPassword] = useState("")
     const option = useRef()
     useEffect(()=>{
         M.FormSelect.init(option.current)
     },[])
-   
+   const createUser = () =>{
+    fetch("http://localhost:5000/api/admin/adduser",{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization" : "Bearer " +localStorage.getItem("token")
+        },
+        body:JSON.stringify({name, username, email,password,conPassword, role})
+      }).then(res=>res.json()).then(data=>{
+        console.log(data)
+        if(data.error){
+          M.toast({html:data.error,  classes:"#c62828 red darken-4"})
+          return 
+       }else{
+           M.toast({html:data.message, classes:"#4caf50 green darken-1"})
+          window.location.replace("/admin/users/"+data._id)
+       }
+      }).catch(err=>console.log(err))
+   }
   return (
     <div>
         <Navbar/>
@@ -48,7 +68,10 @@ function CreateUser() {
                             <input type="password" value={password} placeholder='Enter your Password' onChange={(e)=>setPassword(e.target.value)}/>   
                         </div>
                         <div className="col s12" style={{marginBottom:"10px"}}>
-                            <select ref={option}>
+                            <input type="password" value={conPassword} placeholder='Re:Enter your Password' onChange={(e)=>setConPassword(e.target.value)}/>   
+                        </div>
+                        <div className="col s12" style={{marginBottom:"10px"}}>
+                            <select ref={option} value={role} onChange={(e)=>setRole(e.target.value)} >
                                         <option value="" disabled>Choose a Role</option>
                                         <option value={0}>User</option>
                                         <option value={1}>Admin</option>
@@ -56,7 +79,7 @@ function CreateUser() {
                                     <label>Role</label>
                         </div>
                         <div className="col s12" style={{marginBottom:"10px"}}>
-                            <button className='btn waves-effect waves-yellow #64b5f6 blue darken-2'>
+                            <button className='btn waves-effect waves-yellow #64b5f6 blue darken-2' onClick={()=>{createUser()}}>
                             Create User
                         </button>
                         </div>

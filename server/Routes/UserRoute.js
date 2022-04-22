@@ -59,7 +59,7 @@ userRoute.put("/update", RequireLogin ,async(req, res)=>{
     try {
         const {bio, name, username, quote, cert} = req.body
         const user = await UserModel.findById({_id:req.user._id})
-        console.log(req.user._id)
+        if(user._id === req.user._id || user.role === 1){
             if(user){
                 user.name = name;
                 user.bio  = bio;
@@ -74,6 +74,8 @@ userRoute.put("/update", RequireLogin ,async(req, res)=>{
                
             }
             return res.status(404).json({error:"Error in updating Profile"})
+        }
+            return res.status(401).json({error:"You are not authorized to update this user"})
     } catch (error) {
         console.log(error)
         res.status(500).json({error:error})
@@ -110,6 +112,7 @@ userRoute.get("/users", async(req, res)=>{
     }
    
 })
+
 
 
 export default userRoute;

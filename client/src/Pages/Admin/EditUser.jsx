@@ -5,10 +5,16 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import NotPage from '../../Component/404Page';
 import axios from "axios"
+import M from "materialize-css"
 
 
 function EditUser() {
     const [user, setUser] = useState({})
+    const [name, setName] = useState("")
+    const [cert, setCert] = useState("")
+    const [bio, setBio] = useState("")
+    const [quote, setQuote] = useState("");
+    const [username, setUsername] = useState("")
     const [validUrl, setValidUrl] = useState(false)
     const {id} = useParams()
     useEffect(()=>{
@@ -16,9 +22,33 @@ function EditUser() {
             const singlePost = await axios.get(`http://localhost:5000/api/user/${id}`)
             setUser(singlePost.data)
             setValidUrl(true)
+            setName(singlePost.data.name)
+            setCert(singlePost.data.cert)
+            setBio(singlePost.data.bio)
+            setUsername(singlePost.data.username)
+            setQuote(singlePost.data.quote)
         }
         getUser()
     },[])
+    const updateUser = () =>{
+        fetch("http://localhost:5000/api/update",{
+      method:"put",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization" : "Bearer " +localStorage.getItem("token")
+      },
+      body:JSON.stringify({name, username, bio, cert, quote})
+    }).then(res=>res.json()).then(data=>{
+      console.log(data)
+      if(data.error){
+        M.toast({html:data.error,  classes:"#c62828 red darken-4"})
+        return 
+     }else{
+         M.toast({html:"Profile Updated Successfully", classes:"#4caf50 green darken-1"})
+        window.location.replace("/admin/users/"+data._id)
+     }
+    }).catch(err=>console.log(err))
+    }
   return (
     <div>
         {
@@ -88,25 +118,25 @@ function EditUser() {
                     <div className="col s12 m7 z-depth-1">
                         <div className="row " style={{marginLeft:"2%",marginRight:"1%"}}>
                             <div className="col s12 " style={{marginTop:"20px"}}>
-                                <form className="settingsForm">
+                                <form className="settingsForm" onSubmit={(e)=>{e.preventDefault(); updateUser()}}>
                                     <div className="row">
                                         <div className="col s12 m6 "style={{marginTop:"5px"}}>
                                             <div className="row">
                                                 <div className="col s12">
                                                     <label htmlFor="name">Name</label>
-                                                    <input type="text" placeholder="name" required/>
+                                                    <input type="text" placeholder={name} value={name} onChange={(e)=>setName(e.target.value)} required/>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col s12">
                                                     <label htmlFor="username">Username</label>
-                                                    <input type="text" placeholder="username" required/>
+                                                    <input type="text" placeholder={username} value={username} onChange={(e)=>setUsername(e.target.value)} required/>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col s12">
                                                     <label htmlFor="username">Favourite Quote</label>
-                                                    <textarea placeholder="quote"  required className="materialize-textarea" data-length="120"></textarea>      
+                                                    <textarea placeholder={quote} value={quote} onChange={(e)=>setQuote(e.target.value)} required  className="materialize-textarea" data-length="120"></textarea>      
                                                 </div>
                                             </div>
                                         </div>
@@ -114,13 +144,13 @@ function EditUser() {
                                             <div className="row">
                                                 <div className="col s12">
                                                     <label htmlFor="name">Biography</label>
-                                                    <textarea placeholder="bio" required className="materialize-textarea"></textarea>
+                                                    <textarea placeholder={bio} value={bio} onChange={(e)=>setBio(e.target.value)} required className="materialize-textarea"></textarea>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="col s12">
                                                     <label htmlFor="name">Certification</label>
-                                                    <textarea  placeholder="cert" required className="materialize-textarea"></textarea>
+                                                    <textarea placeholder={cert} value={cert} onChange={(e)=>setCert(e.target.value)} required className="materialize-textarea"></textarea>
                                                 </div>
                                             </div>
                                             <div className="row">
