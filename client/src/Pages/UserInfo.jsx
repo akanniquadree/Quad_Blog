@@ -81,7 +81,7 @@ function UserInfo() {
                   <span className='search' style={{marginBottom:"5px", fontWeight:"bolder"}}>Biography:</span>
                 </div>
                 <div className="col s12 profileDiv">
-                  <p style={{margin:"0", fontSize:"13px"}}>
+                  <p style={{margin:"0", fontSize:"13px", textAlign:"justify", whiteSpace:"pre-line"}}>
                     {
                       users.bio
                     }
@@ -92,13 +92,8 @@ function UserInfo() {
                    <span style={{marginBottom:"5px", fontWeight:"bolder"}} className='search'>Education:</span>
                 </div>
                 <div className="col s12 profileDiv">
-                    <ul style={{margin:"0", fontSize:"13px", marginBottom:"10px"}}>
-                          <li>M.B.B.S from Ski University</li>
-                          <li>M.B.B.S from Ski University</li>
-                          <li>M.B.B.S from Ski University</li>
-                          <li>M.B.B.S from Ski University</li>
-                          <li>M.B.B.S from Ski University</li>
-                          <li>M.B.B.S from Ski University</li>
+                    <ul style={{margin:"0", fontSize:"13px",whiteSpace:"pre-line", marginBottom:"10px"}}>
+                          {users.cert}
                       </ul>
   
                 </div>

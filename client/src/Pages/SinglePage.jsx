@@ -156,7 +156,7 @@ function SinglePage() {
                                     :
                                     <span><i className="small  material-icons " onClick={()=>{like(post._id)}} style={{ marginRight:"5px",cursor:"pointer"}}>favorite_border</i></span>
                                 }
-                                 <p style={{marginTop:"3px",textAlign:"justify", fontSize:"14px"}}>{post.desc}</p> 
+                                 <p style={{marginTop:"3px",textAlign:"justify",whiteSpace:"pre-line", fontSize:"14px"}}>{post.desc}</p> 
                                 </div>
                                 <div className="col s12">
                                     <div className="row single_margin single_row">
@@ -194,7 +194,7 @@ function SinglePage() {
                                                     </div>
                                                     <div className="row">
                                                         <div className="col s12">
-                                                            <span style={{fontWeight:"200", wordBreak:"break-word"}}>{item.text}</span> 
+                                                            <span style={{fontWeight:"200", wordBreak:"break-word",textAlign:"justify", whiteSpace:"pre-line"}}>{item.text}</span> 
                                                         </div>
                                                     </div>
                                                 </div>

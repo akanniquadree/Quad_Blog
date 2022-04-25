@@ -6,6 +6,7 @@ import axios from "axios"
 import { UserContext } from '../Context/action'
 import { UsePagination } from '../Component/UsePagination'
 import SinglePage from './SinglePage'
+import TrendingPost from '../Component/TrendingPost'
 
 function Home() {
     const {state} = useContext(UserContext)
@@ -35,6 +36,15 @@ function Home() {
                     </div>
                     <div className="col s12 m8 l9">
                             <UsePagination posts={posts}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col s12 m5">
+                        <h4>Trending Post</h4>
+                        <TrendingPost/>
+                    </div>
+                    <div className="col s12 m5">
+                        <h4>Best Author of the week</h4>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ export default function () {
     <div className='navbar-fixed'>
         <nav>
             <div className="nav-wrapper white">
-                <Link to="" className="brand-logo logo left" style={{color:"black"}}>QUADBLOG</Link>
+                <Link to="/" className="brand-logo logo left" style={{color:"black"}}>QUADBLOG</Link>
                 <Link to="#" data-target="mobile-demo" className="sidenav-trigger left" style={{color:"black", marginLeft: "1px"}}><i className="large material-icons">menu</i></Link>
                 <ul className="right ">
                    <li><i className='tiny material-icons black-text'>notifications</i></li>

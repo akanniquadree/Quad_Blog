@@ -30,7 +30,7 @@ function CreateUser() {
           return 
        }else{
            M.toast({html:data.message, classes:"#4caf50 green darken-1"})
-          window.location.replace("/admin/users/"+data._id)
+          window.location.replace("/admin/users/")
        }
       }).catch(err=>console.log(err))
    }

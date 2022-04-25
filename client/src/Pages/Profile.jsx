@@ -46,7 +46,7 @@ function Profile() {
                           </div>
                           <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{state ? state.username : "username"}</span>
                           {/* <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{state ? state.email : "email"}</span> */}
-                          <p style={{margin:"0", fontSize:"13px"}}>{
+                          <p style={{margin:"0", fontSize:"13px", whiteSpace:"pre-line"}}>{
                             state.quote
                           }
                           </p>
@@ -58,7 +58,7 @@ function Profile() {
                 <span className='search' style={{marginBottom:"5px", fontWeight:"bolder"}}>Biography:</span>
               </div>
               <div className="col s12 profileDiv">
-                <p style={{margin:"0", fontSize:"13px"}}>
+                <p style={{margin:"0", fontSize:"13px", whiteSpace:"pre-line", textAlign:"justify"}}>
                         {state.bio}
                 </p>
                 <hr/>
@@ -67,13 +67,10 @@ function Profile() {
                  <span style={{marginBottom:"5px", fontWeight:"bolder"}} className='search'>Education:</span>
               </div>
               <div className="col s12 profileDiv">
-                  <ul style={{margin:"0", fontSize:"13px", marginBottom:"10px"}}>
-                        <li>M.B.B.S from Ski University</li>
-                        <li>M.B.B.S from Ski University</li>
-                        <li>M.B.B.S from Ski University</li>
-                        <li>M.B.B.S from Ski University</li>
-                        <li>M.B.B.S from Ski University</li>
-                        <li>M.B.B.S from Ski University</li>
+                  <ul style={{margin:"0", fontSize:"13px", marginBottom:"10px", whiteSpace:"pre-line"}}>
+                        {
+                            state.cert
+                        }
                     </ul>
 
               </div>

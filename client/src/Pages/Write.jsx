@@ -93,7 +93,7 @@ function Write() {
                             <div className="row">
                                 <div className="col s12">
                                     <div className="input-field col s12">
-                                        <input id="title" type="text" className="validate" required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
+                                        <input id="title" type="text" className="validate" maxLength={20} required value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
                                         <label htmlFor="title">Title</label>
                                     </div>
                                 </div>

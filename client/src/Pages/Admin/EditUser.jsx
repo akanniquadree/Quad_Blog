@@ -93,25 +93,29 @@ function EditUser() {
                                 <i className='tiny material-icons'style={{marginRight:"10px"}}>person</i>
                                 <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{user.username}</span>
                             </div>
+                            <div style={{display:"flex",marginTop:"5px",marginBottom:"10px"}}>
+                                <i className='tiny material-icons'style={{marginRight:"10px"}}>person</i>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{user.role == 1 ? "Admin": "User"}</span>
+                            </div>
                             <div style={{display:"flex",marginBottom:"10px"}}>
                                 <i className='tiny material-icons'style={{marginRight:"10px"}}>mail</i>
                                 <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px" }}>{user.email}</span>
                             </div>
                             <div style={{display:"flex",marginBottom:"10px"}}>
                                 <i className='tiny material-icons'style={{marginRight:"10px"}}>format_quote</i>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word", textAlign:"justify"}}>{user.quote}</span>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word", textAlign:"justify",whiteSpace:"pre-line"}}>{user.quote}</span>
                             </div>
                         </div>
                         <div className="col s12" >
                             <span  style={{color: "black", margin:"7px, 0", fontSize:"15px"}}>Biography</span>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word",textAlign:"justify" }}>{user.bio}</span>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word",textAlign:"justify" ,whiteSpace:"pre-line" }}>{user.bio}</span>
                             </div>
                         </div>
                         <div className="col s12" >
                             <span  style={{color: "black", margin:"7px, 0", fontSize:"15px"}}>Certification</span>
                             <div style={{display:"flex",marginBottom:"10px"}}>
-                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word",textAlign:"justify" }}>{user.cert}</span>
+                                <span style={{color: "#aaa", margin:"1px, 0", fontSize:"13px", wordBreak:"break-word",textAlign:"justify", whiteSpace:"pre-line" }}>{user.cert}</span>
                             </div>
                         </div>
                     </div>

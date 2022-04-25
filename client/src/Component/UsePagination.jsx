@@ -28,7 +28,7 @@ export const UsePagination = ({posts, cat}) => {
         window.scrollTo({ behavior: 'smooth', top: '0px' });
        
     },[currentPage])
-    console.log(posts)
+
     return(
         <>
             <div className='row'>

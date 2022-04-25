@@ -273,7 +273,7 @@ authRoute.post("/admin/adduser",RequireLogin, authRole(), async(req,res)=>{
         
         //sending an activation mail to the user email using sendGrid
         if(savedUser){
-            return res.status(200).json({message:"User created Successfully, Verify the email to continue"})
+            return res.status(200).json({savedUser, message:"User created Successfully, Verify the email to continue"})
         }
        
     } catch (error) {

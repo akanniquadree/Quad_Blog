@@ -2,6 +2,7 @@ import express from "express"
 import { RequireLogin } from "../MiddleWares/RequireLogin.js"
 import Category from "../Model/Category.js"
 import PostModel from "../Model/Post.js"
+import UserModel from "../Model/UserModel.js"
 
 
 const postRoute = express.Router()
@@ -179,8 +180,9 @@ postRoute.put("/post/:id", RequireLogin, async(req,res)=>{
         if(!title || !desc || !cat){
             return res.status(422).json({message:"Please all the required field"})
         }
-        const post = await PostModel.findById({_id:postId}).populate("user","_id")
-        if(post.user._id.toString() == req.user._id.toString() || post.user.role == 1){
+        const post = await PostModel.findById({_id:postId}).populate("user")
+        const user3 = await UserModel.findById({_id:req.user._id})
+        if(post.user._id.toString() === req.user._id.toString() || user3.role === 1){
             const existingCat = await Category.findOne({name:cat})
                 if(existingCat){
                     const posts = await PostModel.findByIdAndUpdate(postId,{
@@ -224,7 +226,7 @@ postRoute.put("/post/:id", RequireLogin, async(req,res)=>{
                 }
                 return res.status(422).json({error:"Error in Updating post"})
                 }
-                return res.status(400).json({Error: "You are not Authorized to Update this post"})
+                return res.status(400).json({error: "You are not Authorized to Update this post"})
     } catch (error) {
         console.log(error)
         res.status(500).json(err)

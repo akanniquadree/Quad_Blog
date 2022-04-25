@@ -8,6 +8,10 @@ import { UserContext } from '../Context/action';
 import axios from "axios"
 import { useParams } from 'react-router-dom';
 import NotPage from '../Component/404Page';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 
 function EditWrite() {
@@ -21,7 +25,7 @@ function EditWrite() {
     const {id} = useParams()
     const modal = useRef(null)
     const side = useRef(null)
-    const option= useRef(null)
+    const option= useRef()
     useEffect(()=>{
         const getPost = async() =>{
             const data = await axios.get(`http://localhost:5000/api/post/${id}`,{headers:{"authorization":"Bearer " +localStorage.getItem("token")}})
@@ -114,29 +118,37 @@ function EditWrite() {
                             <div className="row">
                                 <div className="col s12">
                                     <div className="input-field col s12">
-                                        <input id="title" type="text" className="validate" required value={title} placeholder={post.title} onChange={(e)=>{setTitle(e.target.value)}}/>
+                                        <input id="title" type="text" className="validate" required value={title} data-length="15" placeholder={post.title} onChange={(e)=>{setTitle(e.target.value)}}/>
                                         {/* <label htmlFor="title">Title</label> */}
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col s12">
-                                    <select ref={option}  value={cat} onChange={(e)=>{setCat(e.target.value)}}>
-                                        <option value="" disabled>Choose a Category</option>
-                                        <option value="Book">Book</option>
-                                        <option value="Business">Business</option>
-                                        <option value="Fashion">Fashion</option>
-                                        <option value="Film">Film</option>
-                                        <option value="Food">Food</option>
-                                        <option value="Game">Game</option>
-                                        <option value="Lifestyle">Lifestyle</option>
-                                        <option value="Motivation">Motivation</option>
-                                        <option value="Music">Music</option>
-                                        <option value="Travel">Travel</option>
-                                        <option value="Others">Others</option>
-                                        <option value="None">None</option>
-                                    </select>
-                                    <label>Categories</label>
+                                <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+                                        <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={cat}
+                                        label="Age"
+                                        onChange={(e)=>{setCat(e.target.value)}}
+                                        >
+                                        <MenuItem value="" disabled>Choose a Category</MenuItem>
+                                        <MenuItem value="Book">Book</MenuItem>
+                                        <MenuItem value="Business">Business</MenuItem>
+                                        <MenuItem value="Fashion">Fashion</MenuItem>
+                                        <MenuItem value="Film">Film</MenuItem>
+                                        <MenuItem value="Food">Food</MenuItem>
+                                        <MenuItem value="Game">Game</MenuItem>
+                                        <MenuItem value="Lifestyle">Lifestyle</MenuItem>
+                                        <MenuItem value="Motivation">Motivation</MenuItem>
+                                        <MenuItem value="Music">Music</MenuItem>
+                                        <MenuItem value="Travel">Travel</MenuItem>
+                                        <MenuItem value="Others">Others</MenuItem>
+                                        <MenuItem value="None">None</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                 </div>
                             </div>
 
