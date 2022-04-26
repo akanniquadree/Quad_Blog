@@ -7,7 +7,7 @@ import PadNumber from './PadNumber'
 export const UsePagination = ({posts, cat}) => {
     const {state} = useContext(UserContext)
     const [currentPage, setCurrentPage] = useState(1)
-    const [postPerPage, setPostPerPage] = useState(4) 
+    const [postPerPage, setPostPerPage] = useState(12) 
 
     //To get current posts
     const indexOfLastPage = currentPage * postPerPage

@@ -14,10 +14,9 @@ function Foter() {
               <div className="col l4 offset-l2 s12">
                 <h5 className="white-text">Links</h5>
                 <ul>
-                  <li><Link className="grey-text text-lighten-3" to="#!">Link 1</Link></li>
-                  <li><Link className="grey-text text-lighten-3" to="#!">Link 2</Link></li>
-                  <li><Link className="grey-text text-lighten-3" to="#!">Link 3</Link></li>
-                  <li><Link className="grey-text text-lighten-3" to="#!">Link 4</Link></li>
+                  <li><Link className="grey-text text-lighten-3" to="/profile">Profile</Link></li>
+                  <li><Link className="grey-text text-lighten-3" to="/about">About</Link></li>
+                  <li><Link className="grey-text text-lighten-3" to="/contact">Contact</Link></li>
                 </ul>
               </div>
             </div>
@@ -25,7 +24,6 @@ function Foter() {
           <div className="footer-copyright grey darken-4">
             <div className="container">
             © 2022 Copyright Young Dollar
-            <Link className="grey-text text-lighten-4 right" to="#!">More Links</Link>
             </div>
           </div>
         </footer>

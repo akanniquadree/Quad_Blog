@@ -82,7 +82,11 @@ const Routing =()=>{
         <Route path={state && state.role == 1 ?"/admin/posts/:id": "/profile" } exact element={<EditPost/>}></Route>
         
         <Route path="*" element={<NotPage/>}></Route>
+        
       </Routes>
+      {
+        !history.pathname.startsWith("/admin") && <Foter/>
+      }
       </>
   )
 }

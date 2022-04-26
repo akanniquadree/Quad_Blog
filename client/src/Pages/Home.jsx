@@ -7,6 +7,7 @@ import { UserContext } from '../Context/action'
 import { UsePagination } from '../Component/UsePagination'
 import SinglePage from './SinglePage'
 import TrendingPost from '../Component/TrendingPost'
+import BestAuthor from '../Component/BestAuthor'
 
 function Home() {
     const {state} = useContext(UserContext)
@@ -38,14 +39,15 @@ function Home() {
                             <UsePagination posts={posts}/>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col s12 m5">
-                        <h4>Trending Post</h4>
-                        <TrendingPost/>
-                    </div>
-                    <div className="col s12 m5">
-                        <h4>Best Author of the week</h4>
-                    </div>
+            </div>
+            <div className="row" style={{marginLeft:"10px"}}>
+                <div className="col s12 m6" style={{marginRight:"5%"}}>
+                    <h4 className='search'>Trending Post</h4>
+                    <TrendingPost/>
+                </div>
+                <div className="col s12 m5">
+                    <h4 className='search'>Best Author of the week</h4>
+                    <BestAuthor/>
                 </div>
             </div>
         </div>
