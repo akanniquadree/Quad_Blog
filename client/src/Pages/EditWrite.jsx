@@ -62,7 +62,6 @@ function EditWrite() {
         }
 
     },[url])
-    console.log(post)
     
     const postData = () =>{
         const form = new FormData()

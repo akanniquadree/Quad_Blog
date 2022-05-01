@@ -237,24 +237,23 @@ postRoute.put("/post/:id", RequireLogin, async(req,res)=>{
 //Delete a existing Post
 postRoute.delete("/post/:id", RequireLogin, async(req,res)=>{
     try {
-        const post = await PostModel.findById({_id:req.params.id}).populate("user","_id")
-            if(post.user._id.toString() == req.user._id.toString()|| post.user.role == 1){
-                 const removedPost = post.deleteOne()
+        const post = await PostModel.findById({_id:req.params.id})
+            if(post.user._id.toString() === req.user._id.toString()|| post.user.role === 1){
+                 const removedPost = await PostModel.findByIdAndDelete(req.params.id)
                 if(removedPost){
-                    removeCat = await Category.findOne({post:req.params.id},{
+                   const removeCat = await Category.findOneAndUpdate({posts:req.params.id},{
                         $pull:{posts:req.params.id}
                     })
                     if(removeCat){
                       return  res.json({message:"Post is Successfully Deleted"}) 
                     }
-
-                   
                 }
                 return res.status(400).json({error: "Error in deleting Post"})
             }
-            return res.status(400).json({Error: "You are not Authorized to delete this post"})
+            return res.status(400).json({error: "You are not Authorized to delete this post"})
     } catch (error) {
-        res.status(500).json(err)
+        console.log(error)
+        res.status(500).json(error)
     }
 })
 

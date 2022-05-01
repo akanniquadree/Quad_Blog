@@ -35,10 +35,10 @@ export const UsePagination = ({posts, cat}) => {
                 {
                     currentPosts.map((item, index)=>(
                         <div className="col s12 m4 19" key={index}>
-                            <div className="card small cardHover">
+                            <div className="card small cardHover hoverable">
                                 <div className="card-image">
                                     <Link to={`/blog/${item._id}`}><img src={item.image} alt="" className="card-image"/></Link>
-                                    <span  style={{textAlign:"center",fontSize:"15px",fontWeight:"bolder", color:"white"}} className="card-title t-black">Title goes in here</span>
+                                    <span  style={{textAlign:"justify",fontSize:"15px",fontWeight:"bolder", color:"white", textShadow:"5px 3px 2px rgba(191, 150, 150, 1)"}} className="card-title">{item.title}</span>
                                 </div>
                                 <div style={{display:"flex", justifyContent:"center", marginTop:"5px"}}>
                                     
@@ -47,7 +47,7 @@ export const UsePagination = ({posts, cat}) => {
                                 </div>
                                 
                                 <div className="card-content card_cont">
-                                    <Link to={`/blog/${item._id}`} className='link'><p style={{textAlign:"center", padding:"0 10px !important", fontWeight:"bold"}}>{item.title}</p>
+                                    <Link to={`/blog/${item._id}`} className='link'><p style={{textAlign:"justify", padding:"0 10px !important"}} className="truncate">{item.desc}</p>
                                     </Link>
                                 </div>
                                 <div className="card-action card-action2">

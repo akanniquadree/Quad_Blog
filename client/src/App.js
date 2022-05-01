@@ -84,9 +84,9 @@ const Routing =()=>{
         <Route path="*" element={<NotPage/>}></Route>
         
       </Routes>
-      {
+      {/* {
         !history.pathname.startsWith("/admin") && <Foter/>
-      }
+      } */}
       </>
   )
 }

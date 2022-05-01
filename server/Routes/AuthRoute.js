@@ -7,6 +7,7 @@ import sgMail from "@sendgrid/mail"
 import Token from "../Model/Token.js"
 import dotenv from "dotenv"
 import { authRole, RequireLogin } from "../MiddleWares/RequireLogin.js"
+import PostModel from "../Model/Post.js"
 dotenv.config()
 
 const authRoute = express.Router()
@@ -239,7 +240,7 @@ authRoute.post("/newpassword", async(req, res)=>{
 
 })
 
-//Route for Signing Up 
+//Route for admin adding user
 authRoute.post("/admin/adduser",RequireLogin, authRole(), async(req,res)=>{
     const {email, name, password, username, conPassword, role} = req.body
     try {
@@ -282,5 +283,20 @@ authRoute.post("/admin/adduser",RequireLogin, authRole(), async(req,res)=>{
     }
 })
 
+
+// authRoute.delete("/delete/:id", RequireLogin, async(req, res)=>{
+//     try {
+//         const user = await UserModel.findById({_id:req.user._id})
+//         if(user){
+//             await PostModel.deleteMany({user:req.user._id})
+//             await PostModel.find({comments:req.user._id})
+//             const deleteUser = user.delete()
+//         }
+//         return res.status(401).json({error:"You cannot delete this user"})
+//     } catch (error) {
+        
+//     }
+        
+// })
 
 export default authRoute;

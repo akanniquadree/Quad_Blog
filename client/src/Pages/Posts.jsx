@@ -8,6 +8,20 @@ import ProfileMobile from '../Component/ProfileMobile';
 import { UserContext } from '../Context/action';
 import DeletePostModal from '../Component/DeletePostModal';
 import { useParams } from 'react-router-dom';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+
+const style = {
+    position: 'absolute',
+    top: '30%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 
 function Posts() {
@@ -16,6 +30,9 @@ function Posts() {
     const modal3 = useRef(null)
     const side = useRef(null)
     const [data, setData] = useState([])
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
   useEffect(()=>{
     M.Modal.init(modal.current)
     M.Sidenav.init(side.current)
@@ -33,6 +50,7 @@ function Posts() {
         return}
     }).catch(err=>console.log(err))
   },[])
+
 
   
 const columns = [
@@ -59,7 +77,14 @@ const columns = [
                 <div>
                     <Link className='link' to={`/profile/write/edit/${params.row.id}`}><i className='tiny material-icons'  style={{marginRight:"5px",color:"green",cursor:"pointer"}}>edit</i></Link>           
                     
-                    <i className='tiny material-icons modal-trigger' style={{marginRight:"5px",color:"red",cursor:"pointer"}} data-target="modal3">delete</i>
+                    <i className='tiny material-icons' style={{marginRight:"5px",color:"red",cursor:"pointer"}} onClick={handleOpen}>delete</i>
+                    {/* Delete Post Modal PopUp */}
+                        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+                        <Box sx={style}>
+                            <DeletePostModal id={params.row.id} close={handleClose} setData={setData} data={data}/>
+                            </Box>
+                        </Modal>
+                    {/* Delete Modal PopUp */}
                 </div>
             )
       }},
@@ -103,6 +128,7 @@ const columns = [
                             pageSize={10}
                             rowsPerPageOptions={[10]}
                             checkboxSelection
+                            disableSelectionOnClick
                         />
                         </div>
                     </div>
@@ -113,11 +139,7 @@ const columns = [
         <div id="modal1" className="modal" ref={modal}>
           <DeleteModal/>
         </div>
-        {/* Delete Post Modal PopUp */}
-        <div id="modal3" className="modal" ref={modal3}>
-          <DeletePostModal/>
-        </div>
-        {/* Delete Modal PopUp */}
+        
         {/* Mobile side view PopUP */}
         <div id="slide-out" className="sidenav profile_slide z-depth-3" ref={side}>
             <ProfileMobile/>
