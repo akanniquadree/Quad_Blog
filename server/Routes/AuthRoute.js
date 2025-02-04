@@ -14,6 +14,7 @@ const authRoute = express.Router()
 sgMail.setApiKey(process.env.SENDGRID_TRANSPORT)
 
 //Route for Signing Up 
+
 authRoute.post("/signup", async(req,res)=>{
     const {email, name, password, username, conPassword} = req.body
     try {

@@ -32,6 +32,7 @@ import EditUser from './Pages/Admin/EditUser';
 import CreateUser from './Pages/Admin/CreateUser';
 import ViewPost from './Pages/Admin/ViewPost';
 import EditPost from './Pages/Admin/EditPost';
+import UI from './Pages/UI';
 
 const Routing =()=>{
   const {state, dispatch} = useContext(UserContext)
@@ -71,6 +72,7 @@ const Routing =()=>{
         <Route path={state ? "/profile/delete" : "/signin"} element={<DeletePost/>}></Route>
         <Route path='/users/:id/verify/:token' exact element={<VerifyEmail/>}/>
         <Route path="/users/:id/resetpassword/:token" element={<NewPassword/>}></Route>
+        <Route path="/admin/ui" element={<UI/>}></Route>
 
         {/* Admin Route */}
         
