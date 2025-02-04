@@ -16,7 +16,7 @@ function ParticularPost() {
     
     useEffect(()=>{
         const getPosts = async() =>{
-            const post = await axios.get(`http://localhost:5000/api/use/${id}`)
+            const post = await axios.get(`https://quad-blog.onrender.com/api/use/${id}`)
             setCats(post.data)
             setValidUrl(true)
             console.log(cats)

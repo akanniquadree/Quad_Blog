@@ -11,7 +11,7 @@ function SignUp() {
     const [username, setUsername] = useState("")
     const history = useNavigate()
     const postData = () =>{
-        fetch("http://localhost:5000/api/signup",{
+        fetch("https://quad-blog.onrender.com/api/signup",{
             method:"post",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({name,email,password,username, conPassword})

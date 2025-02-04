@@ -7,12 +7,12 @@ function HomeSidebar() {
     const [cats, setCats] = useState([])
     useEffect(()=>{
         const getPosts = async() =>{
-            const post = await axios.get("http://localhost:5000/api/posts")
+            const post = await axios.get("https://quad-blog.onrender.com/api/posts")
             setPosts(post.data)
             
         }
         const getCat = async() =>{
-            const cat = await axios.get("http://localhost:5000/api/category")
+            const cat = await axios.get("http://localhost:https://quad-blog.onrender.com/api/category")
             setCats(cat.data)
         }
         getPosts()

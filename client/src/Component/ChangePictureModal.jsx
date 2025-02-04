@@ -24,7 +24,7 @@ function ChangePictureModal() {
             console.log(data)
             localStorage.setItem("user", JSON.stringify({...state,pic:data.url}))
             dispatch({type:"UPDATEPIC", payload:data.url})
-            fetch("http://localhost:5000/api/updatepic",{
+            fetch("https://quad-blog.onrender.com/api/updatepic",{
                 method:"put",
                 headers:{"Content-Type":"application/json", "authorization": "Bearer " +localStorage.getItem("token")},
                 body:JSON.stringify({pic:data.url})

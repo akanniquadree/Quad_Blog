@@ -16,7 +16,7 @@ function ParticularCategory() {
     
     useEffect(()=>{
         const getPosts = async() =>{
-            const post = await axios.get(`http://localhost:5000/api/category/${name}`)
+            const post = await axios.get(`https://quad-blog.onrender.com/api/category/${name}`)
             setCats(post.data)
             setValidUrl(true)
             

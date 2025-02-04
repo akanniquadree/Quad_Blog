@@ -6,7 +6,7 @@ import axios from "axios"
 
 function DeletePostModal({id, close, setData, data}) {
   const deletePost = async() =>{
-    await axios.delete(`http://localhost:5000/api/post/${id}`, {headers:{"authorization":"Bearer " +localStorage.getItem("token")}}).then(result=>{
+    await axios.delete(`https://quad-blog.onrender.com/api/post/${id}`, {headers:{"authorization":"Bearer " +localStorage.getItem("token")}}).then(result=>{
       if(result.error){ 
         M.toast({html: result.error, classes:"#c62828 red darken-4"})
         return

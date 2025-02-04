@@ -37,7 +37,7 @@ function Posts() {
     M.Modal.init(modal.current)
     M.Sidenav.init(side.current)
     M.Modal.init(modal3.current)
-    fetch(`http://localhost:5000/api/user/post/${id}`,{
+    fetch(`https://quad-blog.onrender.com/api/user/post/${id}`,{
         method:"get",
         headers:{
             "Content-Type" : "application/json",

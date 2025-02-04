@@ -8,7 +8,7 @@ function VerifyEmail() {
     useEffect(()=>{
         const verifyEmail = async() =>{
             try {
-                const url = `http://localhost:5000/api/users/${params.id}/verify/${params.token}`
+                const url = `https://quad-blog.onrender.com/api/users/${params.id}/verify/${params.token}`
                 const {data} = await axios.get(url)
                 if(data){
                     console.log(data)

@@ -7,7 +7,7 @@ function ChangeModal() {
   const [new1, setNew1] = useState("")
   const [new2, setNew2] = useState("")
   const changePassword = (e) =>{
-      fetch("http://localhost:5000/api/changepassword",{
+      fetch("https://quad-blog.onrender.com/api/changepassword",{
         method:"put",
         headers:{
           "Content-Type":"application/json",

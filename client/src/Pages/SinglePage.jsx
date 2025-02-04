@@ -42,7 +42,7 @@ function SinglePage() {
     const handleClose = () => setOpen(false);
     useEffect(()=>{
         const getPost = async() =>{
-            const data = await axios.get(`http://localhost:5000/api/post/${id}`)
+            const data = await axios.get(`https://quad-blog.onrender.com/api/post/${id}`)
             setPost(data.data)
             setValidUrl(true)
         }
@@ -51,7 +51,7 @@ function SinglePage() {
       },[items])
       console.log(cats)
     const like = (id) =>{
-        fetch("http://localhost:5000/api/like",{
+        fetch("https://quad-blog.onrender.com/api/like",{
             method:"put",
             headers:{
                 "Content-Type":"application/json",

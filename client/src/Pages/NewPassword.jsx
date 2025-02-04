@@ -8,7 +8,7 @@ function NewPassword() {
     const [conPassword, setConPassword] = useState("")
     const {token} = useParams()
     const postData = ()=>{
-        fetch("http://localhost:5000/api/newpassword", {
+        fetch("https://quad-blog.onrender.com/api/newpassword", {
             method:"post",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({password,token,conPassword})

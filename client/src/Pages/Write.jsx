@@ -23,7 +23,7 @@ function Write() {
     M.FormSelect.init(option.current)
     
     if(url){
-        fetch("http://localhost:5000/api/createpost",{
+        fetch("https://quad-blog.onrender.com/api/createpost",{
             method:"post",
             headers:{
                 "Content-Type" : "application/json",

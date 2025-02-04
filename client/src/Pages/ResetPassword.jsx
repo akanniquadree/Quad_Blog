@@ -5,7 +5,7 @@ function ResetPassword() {
     const [email, setEmail] = useState("")
 
     const postData = () =>{
-        fetch("http://localhost:5000/api/resetpassword",{
+        fetch("https://quad-blog.onrender.com/api/resetpassword",{
           method:"post",
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify({email})

@@ -28,7 +28,7 @@ function EditWrite() {
     const option= useRef()
     useEffect(()=>{
         const getPost = async() =>{
-            const data = await axios.get(`http://localhost:5000/api/post/${id}`,{headers:{"authorization":"Bearer " +localStorage.getItem("token")}})
+            const data = await axios.get(`https://quad-blog.onrender.com/api/post/${id}`,{headers:{"authorization":"Bearer " +localStorage.getItem("token")}})
              setPost(data.data)
              setTitle(data.data.title)
             setDesc(data.data.desc)

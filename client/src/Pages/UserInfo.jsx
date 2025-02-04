@@ -18,13 +18,13 @@ function UserInfo() {
       M.Modal.init(modal.current)
       M.Sidenav.init(side.current)
       const getUser = async() =>{
-        const data = await axios.get(`http://localhost:5000/api/user/${id}`)
+        const data = await axios.get(`https://quad-blog.onrender.com/api/user/${id}`)
         if(data){
           setUsers(data.data)
         }
       }
       const getPost = async() =>{
-        const data = await axios.get(`http://localhost:5000/api/use/${id}`)
+        const data = await axios.get(`https://quad-blog.onrender.com/api/use/${id}`)
         setPosts(data.data)
       }
       getUser()
