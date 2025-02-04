@@ -57,7 +57,7 @@ function EditProfile(props) {
   })
  const updatePost = () => {
   
-    fetch("http://localhost:5000/api/update",{
+    fetch("https://quad-blog.onrender.com/api/update",{
       method:"put",
       headers:{
         "Content-Type":"application/json",
